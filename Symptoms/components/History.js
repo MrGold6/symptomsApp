@@ -6,7 +6,7 @@ import {DataTable} from 'react-native-paper';
 import {Ionicons} from "@expo/vector-icons";
 import SelectedPartSymptoms from "./SelectedPartSymptoms";
 import FullInfo from "./FullInfo";
-import { FontAwesome } from '@expo/vector-icons';
+import {FontAwesome} from '@expo/vector-icons';
 
 //как передать елемент модальному окну???
 export default function History({news}) {
@@ -22,21 +22,28 @@ export default function History({news}) {
                 <Text style={styles.tableHeaderText}>Дії</Text>
             </View>
 
-            <FlatList data={news} renderItem={({item})=> (
-                    <View style={styles.table}>
-                        <Text style={{marginRight:10,}}>{item.date}</Text>
-                        <Text  style={{position: 'absolute', left: 85}}>{item.symptoms.slice(0, 12) + '...'}</Text>
-                        <Text  style={{position: 'absolute', left: 220}}>{item.note.slice(0, 7) + '...'}</Text>
-                        <FontAwesome style={{position: 'absolute', right: 2}} name="eye" size={24} color="black" onPress={()=>setModalWindow(true)}/>
+            <FlatList data={news} renderItem={({item}) => (
+                <View style={styles.table}>
+                    <Text style={{marginRight: 10,}}>{item.date}</Text>
+                    <Text style={{
+                        position: 'absolute',
+                        left: 85
+                    }}>{item.symptoms.length < 12 ? item.symptoms : item.symptoms.slice(0, 12) + '...'}</Text>
+                    <Text style={{
+                        position: 'absolute',
+                        left: 220
+                    }}>{item.notes ? item.notes.slice(0, 7) + '...' : "-"}</Text>
+                    <FontAwesome style={{position: 'absolute', right: 2}} name="eye" size={24} color="black"
+                                 onPress={() => setModalWindow(true)}/>
 
-                        <Modal visible={modalWindow}>
-                            <View style={globalStyle.main}>
-                                <Ionicons name="close-circle" size={26} color="red" onPress={()=>setModalWindow(false)}/>
-                                <FullInfo item={item}/>
-                            </View>
-                        </Modal>
-                    </View>
-            )} />
+                    <Modal visible={modalWindow}>
+                        <View style={globalStyle.main}>
+                            <Ionicons name="close-circle" size={26} color="red" onPress={() => setModalWindow(false)}/>
+                            <FullInfo item={item}/>
+                        </View>
+                    </Modal>
+                </View>
+            )}/>
         </View>
     );
 }

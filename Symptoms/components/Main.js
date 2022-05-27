@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Text, View, TouchableOpacity, FlatList, Image, Modal, Button,} from 'react-native';
 import {globalStyle} from "../styles/style";
 import { StyleSheet} from 'react-native';
@@ -7,22 +7,28 @@ import { EvilIcons } from '@expo/vector-icons';
 import Form from "./Form";
 import SelectedPartSymptoms from "./SelectedPartSymptoms";
 import History from "./History";
-import Svg, {Circle} from "react-native-svg";
 import SvgComponent from "./Svg";
+import {additionalLinks} from "./shared/links";
 
 
 export default function Main({navigation}) {
  const loadScene = ()=> {
         navigation.navigate('Contact');
     }
-    const [news, setNews] = useState([
-        {date:'20.01.2022', symptoms: 'Головний біль, Запаморочення, Випадіння волосся',
-            note: 'можливо зв\'язане зі стресом', key:'1'},
-        {date:'19.04.2022', symptoms: 'Підвищення температури тіла, Випадіння волосся',
-            note: 'можливо зв\'язане зі перевантаженням', key:'2'},
-        {date:'13.02.2022', symptoms: 'Набряклість лиця, Запаморочення',
-            note: 'можливо зв\'язане зі перенесенням отьоку винки', key:'3'},
-    ]);
+    const [news, setNews] = useState([]);
+
+    useEffect(() => {
+        console.log();
+        fetch(additionalLinks.PATIENT_INFO, {
+            method: 'GET',
+            credentials: 'include',
+            cache: 'no-cache',
+        })
+            .then(response => response.json())
+            .then(data => {
+                setNews(data.symptomsHistories)
+            })
+    }, []);
 
 
     const [modalWindow, setModalWindow] = useState(false);
@@ -45,7 +51,7 @@ export default function Main({navigation}) {
 
 
 
-    const symptoms = [
+    const [symptoms, setSymptoms]  = [
         { label: 'Головний біль', value: 'Головний біль'},
         { label: 'Запаморочення', value: 'Запаморочення'},
         { label: 'Тошнота', value: 'Тошнота'},
@@ -59,7 +65,6 @@ export default function Main({navigation}) {
         { label: 'Набряклість лиця', value: 'Набряклість лиця'},
     ]
 
-
     const [selectedSymptoms, setSelectedSymptoms] = useState([]);
 
     const onSelectionsChange = newSelections => {
@@ -72,6 +77,7 @@ export default function Main({navigation}) {
         });
         setModalWindow2(false);
     }
+
 
     return (
         <View style={globalStyle.main}>

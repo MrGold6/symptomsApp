@@ -3,16 +3,15 @@ import {Button, Image, StyleSheet, TextInput, View} from 'react-native';
 import {globalStyle} from "../styles/style";
 import {Formik} from "formik";
 import { AntDesign } from '@expo/vector-icons';
-
+import {ApiLinks} from "./shared/links";
 
 export default function Login({navigation, addArticle}) {
-
 
     const loginL =  (values) => {
         const formData = new FormData();
         formData.append('username', values.login);
         formData.append('password', values.password);
-         fetch('http://4e86-37-54-167-219.ngrok.io/login', {
+         fetch(ApiLinks.LOGIN, {
             method: 'POST',
             body: formData,
             credentials: 'include',
