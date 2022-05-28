@@ -13,7 +13,8 @@ export default function SelectedPartSymptoms({symptoms, selectedSymptoms, onSele
             <SelectMultiple
                 items={symptoms}
                 selectedItems={selectedSymptoms}
-                onSelectionsChange={onSelectionsChange} />
+                onSelectionsChange={onSelectionsChange}
+                keyExtractor={symptoms.forEach((item) => item.id)}/>
         </View>
     );
 }
