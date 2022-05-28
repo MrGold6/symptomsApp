@@ -8,6 +8,7 @@ import Form from "./Form";
 import SelectedPartSymptoms from "./SelectedPartSymptoms";
 import History from "./History";
 import SvgComponent from "./Svg";
+import {ApiLinks} from "./shared/links";
 
 export default function Main({navigation}) {
 
@@ -27,19 +28,39 @@ export default function Main({navigation}) {
         clearSymptoms();
     }
 
-    const symptoms = [
-        {label: 'Головний біль', value: 'Головний біль'},
-        {label: 'Запаморочення', value: 'Запаморочення'},
-        {label: 'Тошнота', value: 'Тошнота'},
-        {label: "Порушення пам'яті", value: "Порушення пам'яті"},
-        {label: 'Підвищення температури тіла', value: 'Підвищення температури тіла'},
-        {label: 'Випадіння волосся', value: 'Випадіння волосся'},
-        {label: 'Лицьовий біль', value: 'Лицьовий біль'},
-        {label: 'Слабкість лицьових м\'яз', value: 'Слабкість лицьових м\'яз'},
-        {label: 'Зміна шкіри лиця', value: 'Зміна шкіри лиця'},
-        {label: 'Оніміння лиця', value: 'Оніміння лиця'},
-        {label: 'Набряклість лиця', value: 'Набряклість лиця'},
-    ]
+    const [bodyParts, setBodyParts] = useState([]);
+
+    useEffect(() => {
+        console.log();
+        fetch(ApiLinks.BODY_PART, {
+            method: 'GET',
+            credentials: 'include',
+            cache: 'no-cache',
+        })
+            .then(response => response.json())
+            .then(data => {
+                setBodyParts(data)
+            })
+    }, []);
+
+    const [bodyPartsName, setBodyPartsName] = useState([]);
+    const [symptoms, setSymptoms] = useState([]);
+
+    const symptomsByBodyPart = (id) => {
+        let bodyPartsById = bodyParts.find(x => x.id == id);
+        const allSymptoms = bodyPartsById.symptoms;
+
+        allSymptoms.forEach(element => {
+            element.value = element.name;
+            element.label = element.name;
+        });
+
+        setSymptoms(allSymptoms);
+        setBodyPartsName(bodyPartsById.name);
+
+        setModalWindow(true);
+
+    }
 
     const [selectedSymptoms, setSelectedSymptoms] = useState([]);
 
@@ -60,7 +81,7 @@ export default function Main({navigation}) {
             <Modal visible={modalWindow}>
                 <View style={globalStyle.main}>
                     <Ionicons name="close-circle" size={26} color="red" onPress={() => setModalWindow(false)}/>
-                    <Text style={styles.title}>Симптоми для голови</Text>
+                    <Text style={styles.title}>Симптоми для {bodyPartsName}</Text>
                     <SelectedPartSymptoms symptoms={symptoms} selectedSymptoms={selectedSymptoms}
                                           onSelectionsChange={onSelectionsChange}/>
                 </View>
@@ -82,13 +103,14 @@ export default function Main({navigation}) {
             </View>
 
             <View style={styles.body}>
-                <SvgComponent onPress={() => setModalWindow(true)}/>
+                <SvgComponent onPress={() => symptomsByBodyPart(1)}/>
             </View>
 
             <View>
                 <FlatList data={selectedSymptoms} style={styles.flatList} renderItem={({item}) => (
                     <View>
-                        <Text style={styles.flatListText}>{item.label}, </Text>
+                        <Text
+                            style={styles.flatListText}>{selectedSymptoms.at(-1).label === item.label ? item.label : item.label + ", "}  </Text>
                     </View>
 
                 )}
