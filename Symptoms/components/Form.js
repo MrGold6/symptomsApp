@@ -14,18 +14,19 @@ export default function Form({addSymptoms, selectedSymptoms}) {
         var mm = d.getMonth() + 1; // getMonth() is zero-based
         var dd = d.getDate();
         return [
-            (dd>9 ? '' : '0') + dd,
+            d.getFullYear(),
             (mm>9 ? '' : '0') + mm,
-            d.getFullYear()
-        ].join('.');
+            (dd>9 ? '' : '0') + dd
+        ].join('-');
     }
 
     const date1 = formatDate(new Date());
 
-
+   // selectedSymptoms.at(-1).label === item.label ? item.label : item.label + ", "
     return (
         <View>
-            <Formik initialValues={{symptoms: names.join(', '), date: date1, note: ''}} onSubmit={(values, action) => {
+
+            <Formik initialValues={{symptoms: names, date: date1, notes: ''}} onSubmit={(values, action) => {
                 addSymptoms(values);
                 action.resetForm();
             }}>
@@ -47,11 +48,11 @@ export default function Form({addSymptoms, selectedSymptoms}) {
                             onChangeText={props.handleChange('date')}/>
                         <TextInput
                             style={styles.forNotes}
-                            value={props.values.note}
+                            value={props.values.notes}
                             multiline
                             placeholder={'Нотатки'}
                             placeholderTextColor={'silver'}
-                            onChangeText={props.handleChange('note')}/>
+                            onChangeText={props.handleChange('notes')}/>
 
 
                         <Button title={'Add'} onPress={props.handleSubmit}/>

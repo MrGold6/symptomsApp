@@ -31,6 +31,7 @@ public class PatientService {
     }
 
     public void addSymptomsHistories(SymptomsHistory symptomsHistory, Patient patient) {
+        symptomsHistory.setId(String.valueOf(patient.getSymptomsHistories().size()+1));
         symptomsHistoryRepository.save(symptomsHistory);
         patient.addSymptomsHistory(symptomsHistory);
         patientRepository.save(patient);
