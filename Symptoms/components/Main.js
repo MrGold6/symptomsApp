@@ -16,13 +16,23 @@ export default function Main({navigation}) {
     const [modalWindow2, setModalWindow2] = useState(false);
 
 
-    const addSymptoms = (article) => {
-        article.key = Math.random().toString();
-        setNews((list) => {
-            return [
-                article,
-                ...list
-            ]
+    const addSymptoms = async (article) => {
+        console.log(article);
+
+        fetch(ApiLinks.PATIENT, {
+            method: 'POST',
+            body: JSON.stringify(article),
+            credentials: 'include',
+            cache: 'no-cache',
+            headers:new Headers({
+                'Content-Type':  'application/json'
+            })
+        }).then(response => {
+            if (response.status === 200) {
+                console.log("cool");
+            } else {
+                console.log("error");
+            }
         });
         setModalWindow2(false);
         clearSymptoms();
