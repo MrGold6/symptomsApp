@@ -1,17 +1,26 @@
-import React, {useState} from "react";
-import {Button, FlatList, Image, Modal, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, {useState, useEffect} from "react";
+import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {globalStyle} from "../styles/style";
-import {Row, Rows, Table} from "react-native-table-component";
-import {DataTable} from 'react-native-paper';
-import {Ionicons} from "@expo/vector-icons";
-import SelectedPartSymptoms from "./SelectedPartSymptoms";
 import FullInfo from "./FullInfo";
 import {FontAwesome} from '@expo/vector-icons';
+import {additionalLinks} from "./shared/links";
 
-//как передать елемент модальному окну???
-export default function History({news}) {
+export default function History({navigation}) {
 
-    const [modalWindow, setModalWindow] = useState(false);
+    const [records, setRecords] = useState([]);
+
+    useEffect(() => {
+        console.log();
+        fetch(additionalLinks.PATIENT_INFO, {
+            method: 'GET',
+            credentials: 'include',
+            cache: 'no-cache',
+        })
+            .then(response => response.json())
+            .then(data => {
+                setRecords(data.symptomsHistories)
+            })
+    }, []);
 
     return (
         <View style={globalStyle.main}>
@@ -22,7 +31,7 @@ export default function History({news}) {
                 <Text style={styles.tableHeaderText}>Дії</Text>
             </View>
 
-            <FlatList data={news} renderItem={({item}) => (
+            <FlatList data={records} renderItem={({item}) => (
                 <View style={styles.table}>
                     <Text style={{marginRight: 10,}}>{item.date}</Text>
                     <Text style={{
@@ -34,14 +43,7 @@ export default function History({news}) {
                         left: 220
                     }}>{item.notes ? item.notes.slice(0, 7) + '...' : "-"}</Text>
                     <FontAwesome style={{position: 'absolute', right: 2}} name="eye" size={24} color="black"
-                                 onPress={() => setModalWindow(true)}/>
-
-                    <Modal visible={modalWindow}>
-                        <View style={globalStyle.main}>
-                            <Ionicons name="close-circle" size={26} color="red" onPress={() => setModalWindow(false)}/>
-                            <FullInfo item={item}/>
-                        </View>
-                    </Modal>
+                                 onPress={() => navigation.navigate('FullInfo', item)}/>
                 </View>
             )}/>
         </View>
