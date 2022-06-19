@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Main from "./components/Main";
 import Profile from "./components/Profile";
 import History from "./components/History";
@@ -7,11 +7,33 @@ import {createStackNavigator} from "@react-navigation/stack";
 import {NavigationContainer} from "@react-navigation/native";
 import FullInfo from "./components/FullInfo";
 import Form from "./components/Form";
+import {additionalLinks, ApiLinks} from "./components/shared/links";
 
 const Stack = createStackNavigator();
 
 export default function Navigate()
 {
+    //TODO: check if user token is valid
+
+    /*  const [signIn, setSignIn] = useState(false);
+
+     useEffect(async () => {
+
+         console.log();
+         fetch(ApiLinks.PATIENT, {
+             method: 'GET',
+             credentials: 'include',
+             cache: 'no-cache',
+         })
+             .then(response => response.json())
+             .then(data => {
+                 setBodyParts(data)
+             })
+
+     }, []);*/
+
+
+
     return <NavigationContainer>
         <Stack.Navigator>
             <Stack.Screen

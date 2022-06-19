@@ -6,7 +6,9 @@ export const globalStyle = StyleSheet.create(
         main:{
             flex:1,
             marginTop:7,
-            padding: 5
+            padding: 5,
+            backgroundColor: '#ffffff'
+
         },
         title:{
             fontSize: 25,

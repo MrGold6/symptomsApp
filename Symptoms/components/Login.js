@@ -5,13 +5,12 @@ import {Formik} from "formik";
 import { AntDesign } from '@expo/vector-icons';
 import {ApiLinks} from "./shared/links";
 
-export default function Login({navigation, addArticle}) {
-
+export default function Login({navigation}) {
     const loginL =  (values) => {
         const formData = new FormData();
         formData.append('username', values.login);
         formData.append('password', values.password);
-         fetch(ApiLinks.LOGIN, {
+        fetch(ApiLinks.LOGIN, {
             method: 'POST',
             body: formData,
             credentials: 'include',
@@ -24,7 +23,6 @@ export default function Login({navigation, addArticle}) {
             }
         });
     }
-
 
 
     return (
