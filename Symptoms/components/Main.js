@@ -113,7 +113,8 @@ export default function Main({navigation}) {
             </View>
 
             <View style={styles.body}>
-                <SvgComponent onPress={() => symptomsByBodyPart(1)}/>
+
+                <SvgComponent style={{position: 'absolute'}} onPress={() => symptomsByBodyPart(1)}/>
             </View>
 
             <View>
@@ -144,11 +145,20 @@ const styles = StyleSheet.create({
         },
     body:
         {
+           // borderColor: '#000',
             flex: 1,
             alignSelf: 'center',
             width: '90%',
             justifyContent: "center",
             alignItems: "center",
+
+        },
+
+    img:
+        {
+            flex: 1,
+            aspectRatio: 0.9,
+            resizeMode: 'contain',
 
         },
 

@@ -26,7 +26,7 @@ export default function Form({addSymptoms, selectedSymptoms}) {
     return (
         <View>
 
-            <Formik initialValues={{symptoms: names, date: date1, notes: ''}} onSubmit={(values, action) => {
+            <Formik initialValues={{symptoms: names.join(', '), date: date1, notes: ''}} onSubmit={(values, action) => {
                 addSymptoms(values);
                 action.resetForm();
             }}>
