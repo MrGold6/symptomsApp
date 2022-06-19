@@ -37,6 +37,11 @@ public class PatientController {
         return new ResponseEntity<>(getAuthPatient(), HttpStatus.OK);
     }
 
+    @GetMapping("/getUserSex")
+    public ResponseEntity<Integer> userSex() {
+        return new ResponseEntity<>(getAuthPatient().getSex(), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<Patient> addSymptomsHistory(@RequestBody SymptomsHistory symptomsHistory) {
         patientService.addSymptomsHistories(symptomsHistory, getAuthPatient());

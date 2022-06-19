@@ -15,7 +15,10 @@ const  fonts = () =>Font.loadAsync({
     });
 
 export default function App() {
-  const [font, setFont] = useState(false);
+    //TODO: disable warnings
+    console.disableYellowBox = true;
+
+    const [font, setFont] = useState(false);
   if(font) {
     return (
             <MainStack />

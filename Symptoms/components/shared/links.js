@@ -11,7 +11,7 @@ export const ApiLinks = (
 export const additionalLinks = (
     {
         PATIENT_INFO:ApiLinks.PATIENT+"/getUserInfo",
-        //SYMPTOMS_HISTORY:ApiLinks.PATIENT+"/getUserInfo",
+        PATIENT_SEX:ApiLinks.PATIENT+"/getUserSex",
     }
 )
 
