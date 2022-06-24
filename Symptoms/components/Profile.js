@@ -62,7 +62,6 @@ export default function Profile({navigation}) {
                 <Text>{user.chronic_disease ? user.chronic_disease : "-"}</Text>
             </Text>
 
-            <FontAwesome style={{alignSelf:'center', margin:5}} name="sign-out" size={30} color="#1847c7" onPress={()=> navigation.navigate('Login')}/>
 
         </View>
     );

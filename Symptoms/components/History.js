@@ -19,7 +19,7 @@ export default function History({navigation}) {
             .then(response => response.json())
             .then(data => {
                 setRecords(data.symptomsHistories)
-                sortRecords();
+               //sortRecords();
             })
     }, []);
 
@@ -27,10 +27,11 @@ export default function History({navigation}) {
 
     // sort data
     const sortRecords = () => {
-        setRecords(records.sort(function (b, a) {
+        let r= records.sort(function (b, a) {
             console.log("hi")
             return a.date - b.date;
-        }))
+        });
+        setRecords(r);
     };
 
     return (

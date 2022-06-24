@@ -17,6 +17,7 @@ export default function Login({navigation}) {
             cache: 'no-cache',
         }).then(response => {
             if (response.status === 200) {
+                navigation.navigate('Main');
                 console.log("cool");
             } else {
                 console.log("error");

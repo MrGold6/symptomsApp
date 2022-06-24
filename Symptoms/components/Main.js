@@ -64,6 +64,7 @@ export default function Main({navigation}) {
         })
             .then(response => response.json())
             .then(data => {
+                console.log()
                 setSex(data)
             })
     }, []);
