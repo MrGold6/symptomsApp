@@ -16,9 +16,15 @@ Server is REST API projects on Spring Boot and client on React Native.
 
 ## Screenshots:
 
-#### Main window where you can choose part of body: ![img.png](img/img.jpg)
-#### List of symptoms by body part: ![img2.png](img/img2.jpg)
-#### Save symptoms: ![img3.png](img/img3.jpg)
-#### Symptoms chronology: ![img4.png](img/img4.jpg)
-#### Full record information : ![img5.png](img/img5.jpg)
-#### Profile info: ![img6.png](img/img6.jpg)
+#### Main window where you can choose part of body: 
+![img.png](img/img.jpg)
+#### List of symptoms by body part: 
+![img2.png](img/img2.jpg)
+#### Save symptoms: 
+![img3.png](img/img3.jpg)
+#### Symptoms chronology: 
+![img4.png](img/img4.jpg)
+#### Full record information : 
+![img5.png](img/img5.jpg)
+#### Profile info: 
+![img6.png](img/img6.jpg)
