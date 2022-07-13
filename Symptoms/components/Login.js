@@ -1,6 +1,5 @@
 import React from "react";
-import {Button, Image, StyleSheet, TextInput, View} from 'react-native';
-import {globalStyle} from "../styles/style";
+import {StyleSheet, TextInput, View} from 'react-native';
 import {Formik} from "formik";
 import { AntDesign } from '@expo/vector-icons';
 import {ApiLinks} from "./shared/links";

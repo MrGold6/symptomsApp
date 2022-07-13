@@ -1,8 +1,6 @@
 import React from "react";
 import {Button, Image, StyleSheet, TextInput, View} from 'react-native';
-import {globalStyle} from "../styles/style";
 import {Formik} from "formik";
-import {SafeAreaView} from "react-native-web";
 
 
 export default function Form({addSymptoms, selectedSymptoms}) {
@@ -11,7 +9,7 @@ export default function Form({addSymptoms, selectedSymptoms}) {
     });
 
     const formatDate = (d) => {
-        var mm = d.getMonth() + 1; // getMonth() is zero-based
+        var mm = d.getMonth() + 1;
         var dd = d.getDate();
         return [
             d.getFullYear(),
@@ -22,7 +20,6 @@ export default function Form({addSymptoms, selectedSymptoms}) {
 
     const date1 = formatDate(new Date());
 
-   // selectedSymptoms.at(-1).label === item.label ? item.label : item.label + ", "
     return (
         <View>
 

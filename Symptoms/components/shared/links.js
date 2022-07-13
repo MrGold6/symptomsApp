@@ -1,4 +1,5 @@
-export const MAIN_LINK = "http://79f5-37-54-167-219.ngrok.io";
+export const MAIN_LINK = "http://90c1-37-54-167-219.ngrok.io";
+
 
 export const ApiLinks = (
     {

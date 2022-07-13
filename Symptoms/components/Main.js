@@ -22,8 +22,6 @@ export default function Main({navigation}) {
 
 
     const addSymptoms = async (article) => {
-        console.log(article);
-
         fetch(ApiLinks.PATIENT, {
             method: 'POST',
             body: JSON.stringify(article),
@@ -1072,7 +1070,7 @@ export default function Main({navigation}) {
                     }
 
                     <AntDesign name="retweet" size={30} color="#559de5" style={{alignSelf: 'flex-end'}}
-                               onPress={() => setRevert(revert == false ? true : false)}/>
+                               onPress={() => setRevert(revert == false)}/>
 
                 </View>
                 :
@@ -1100,7 +1098,7 @@ export default function Main({navigation}) {
                     }
 
                     <AntDesign name="retweet" size={30} color="#559de5" style={{alignSelf: 'flex-end'}}
-                               onPress={() => setRevert(revert == false ? true : false)}/>
+                               onPress={() => setRevert(revert == false)}/>
 
                 </View>
             }
