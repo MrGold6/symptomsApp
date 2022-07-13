@@ -1,8 +1,6 @@
-import React, {useState} from "react";
-import {Button, FlatList, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React from "react";
+import {View} from 'react-native';
 import {globalStyle} from "../styles/style";
-import {Row, Rows, Table} from "react-native-table-component";
-import {DataTable} from 'react-native-paper';
 import SelectMultiple from "react-native-select-multiple";
 
 export default function SelectedPartSymptoms({symptoms, selectedSymptoms, onSelectionsChange}) {
@@ -18,15 +16,4 @@ export default function SelectedPartSymptoms({symptoms, selectedSymptoms, onSele
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    full: {
-        fontFamily: 'mt-light',
-        fontSize: 16,
-        marginTop: 5,
-        color: '#474747'
-    },
- 
-
-});
 

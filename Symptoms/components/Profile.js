@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from "react";
-import {Button, Image, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {globalStyle} from "../styles/style";
-import {EvilIcons, FontAwesome} from '@expo/vector-icons';
 import {additionalLinks} from "./shared/links";
 
-export default function Profile({navigation}) {
+export default function Profile() {
 
     const [user, setUser] = useState([]);
 

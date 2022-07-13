@@ -23,7 +23,4 @@ public class BodyPartService {
         return diseaseFromDb.orElse(new BodyPart());
     }
 
-    public BodyPart addBodyPart(BodyPart bodyPart) {
-        return bodyPartRepository.save(bodyPart);
-    }
 }

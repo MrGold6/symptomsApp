@@ -23,17 +23,6 @@ export default function History({navigation}) {
             })
     }, []);
 
-    //TODO: sort dont work
-
-    // sort data
-    const sortRecords = () => {
-        let r= records.sort(function (b, a) {
-            console.log("hi")
-            return a.date - b.date;
-        });
-        setRecords(r);
-    };
-
     return (
         <View style={globalStyle.main}>
             <View style={styles.tableHeader}>
